@@ -1,7 +1,7 @@
 
-input = "/Users/RSuzuki/Projects/cell_count_demo/imgs/DAPI/emetine/0.01/Week3_290607_C10_s2_w14A4A3A02-57AA-4A68-B11C-ED3364ACC653.tif";  // doesnt work with relative path //TODO: change it to rel path
-outdir = "/Users/RSuzuki/Projects/cell_count_demo/outs/single";
-suffix = ".tif";
+File.openDialog("Select an image file");
+input = File.directory + File.name;
+outdir = getDirectory("Choose a Directory");
 
 processFile(input, outdir);
 

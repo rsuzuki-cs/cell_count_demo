@@ -1,16 +1,10 @@
-
-input = "/Users/RSuzuki/Projects/cell_count_demo/imgs/DAPI";  // doesnt work with relative path //TODO: change it to rel path
-output = "/Users/RSuzuki/Projects/cell_count_demo/outs";
+input = getDirectory("Choose a Directory");
+output = getDirectory("Choose a Directory");
 suffix = ".tif";
 
 cpds = newArray("emetine", "etoposide", "staurosporine");
 cntrs1 = newArray("0.01", "0.03", "0.1", "0.3", "1.0", "3.0", "10.0", "30.0");
 cntrs2 = newArray("0.0003", "0.001", "0.003", "0.01", "0.03", "0.1", "0.3", "1.0");
-
-// cpds = newArray("emetine");
-// cntrs1 = newArray("0.01");
-// cntrs2 = newArray("0.0003", "0.001", "0.003", "0.01", "0.03", "0.1", "0.3", "1.0");
-
 
 processFolder(input);
 
@@ -39,16 +33,12 @@ function processFolder(input) {
 }
 
 function processFile(input, output, file) {
-    // print("Processing: " + input + File.separator + file);
-    // print("Saving to: " + output);
 
     //opening the image
     open(input + File.separator + file);
 
     filename_pure = File.nameWithoutExtension;
     saving_prefix = output + File.separator + filename_pure;
-
-    // print(saving_prefix);
 
     //preparations
     roiManager("reset");
@@ -57,7 +47,6 @@ function processFile(input, output, file) {
 
     //get the image name
     title = getTitle();
-    // print(title);
 
     run("Median...", "radius=10");
     setAutoThreshold("Default dark no-reset");
@@ -67,7 +56,6 @@ function processFile(input, output, file) {
     run("Analyze Particles...", "  show=Overlay display exclude add");
 
     saveAs("results", saving_prefix + "_results.csv"); //use saveAs command to save results
-    //save the isolated C3 (binary image)
     selectWindow(title);
     saveAs("tiff", saving_prefix + "_prcd.tif"); //use saveAs command to save an image
 
