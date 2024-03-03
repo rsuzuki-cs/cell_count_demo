@@ -1,15 +1,16 @@
 
 input = "/Users/RSuzuki/Projects/cell_count_demo/imgs/DAPI";  // doesnt work with relative path //TODO: change it to rel path
-output = "/Users/RSuzuki/Projects/cell_count_demo/outs";
+output = "/Users/RSuzuki/Projects/cell_count_demo/outs/otsu";
+File.makeDirectory(output)
 suffix = ".tif";
 
 cpds = newArray("emetine", "etoposide", "staurosporine");
 cntrs1 = newArray("0.01", "0.03", "0.1", "0.3", "1.0", "3.0", "10.0", "30.0");
 cntrs2 = newArray("0.0003", "0.001", "0.003", "0.01", "0.03", "0.1", "0.3", "1.0");
 
-// cpds = newArray("emetine");
+// cpds = newArray("staurosporine");
 // cntrs1 = newArray("0.01");
-// cntrs2 = newArray("0.0003", "0.001", "0.003", "0.01", "0.03", "0.1", "0.3", "1.0");
+// cntrs2 = newArray("0.03");
 
 
 processFolder(input);
@@ -60,7 +61,7 @@ function processFile(input, output, file) {
     // print(title);
 
     run("Median...", "radius=10");
-    setAutoThreshold("Default dark no-reset");
+    setAutoThreshold("Otsu dark no-reset");
     setOption("BlackBackground", true);
     run("Convert to Mask");
     run("Watershed");

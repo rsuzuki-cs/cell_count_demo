@@ -5,10 +5,11 @@ from skimage.filters import gaussian
 import matplotlib.pyplot as plt
 from skimage import measure
 
-def cell_count_contour(image_path, mask_th, cnt_th, show_plot):
+def cell_count_contour(image_path, mask_th, cnt_th, show_plot, verbouse):
     # Read image
     img_orig = cv2.imread(image_path, cv2.IMREAD_UNCHANGED)
-    print(f"Original image dtype: {img_orig.dtype}")
+    # if verbouse:
+    #     print(f"Original image dtype: {img_orig.dtype}")
 
     # Convert image to 8bit
     ## Process this even if the original image is already 8bit since it wouldn't change much.
@@ -21,7 +22,8 @@ def cell_count_contour(image_path, mask_th, cnt_th, show_plot):
 
     # Find contour for a given intensity values
     contours = measure.find_contours(masked_img, level=cnt_th, fully_connected='high')
-    print(f"Number of cells: {len(contours)}")
+    if verbouse:
+        print(f"Number of cells: {len(contours)}")
 
     # Plot
     if show_plot:

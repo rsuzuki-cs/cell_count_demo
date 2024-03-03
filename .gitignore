@@ -161,5 +161,6 @@ cython_debug/
 
 # Data files
 imgs/
-
+outs/
+DAPI.zip
 
