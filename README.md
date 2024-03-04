@@ -29,6 +29,11 @@ cell_count_demo (prject root)
     |- otsu
 ```
 
+## References
+Some codes and methods are adapted from;
+- Single-cell segmentation in Python by Dr. Luis Aguilera, Will Raymond
+- Bioimage Data Analysis Workflows by Kota Miura, Nataša Sladoje
+
 <br><br>
 
 All good? Then please go to `cell_count_demo.ipynb` to see the demonstration.
